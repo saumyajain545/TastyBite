@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Menu | TastyBite{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><p class="eyebrow">FRESH FROM OUR KITCHEN</p><h1>Explore Our <em>Menu</em></h1><p>Something delicious for every craving.</p></div></section>
+<section class="section container">
+  <div class="filter-row">
+    <a class="filter-chip {{ 'active' if not selected_category or selected_category|lower == 'all' else '' }}" href="{{ url_for('menu') }}">All Items</a>
+    {% for cat in categories %}<a class="filter-chip {{ 'active' if selected_category == cat.category else '' }}" href="{{ url_for('menu', category=cat.category) }}">{{ cat.category }}</a>{% endfor %}
+  </div>
+  <div class="food-grid">
+    {% for item in items %}
+    <article class="food-card">
+      <div class="food-image"><img src="{{ item.image_url }}" alt="{{ item.name }}" loading="lazy"><span class="rating">★ {{ item.rating }}</span></div>
+      <div class="food-info"><p class="food-category">{{ item.category }}</p><h3>{{ item.name }}</h3><p class="food-desc">{{ item.description }}</p><div class="food-bottom"><strong>₹{{ '%.0f'|format(item.price) }}</strong><form method="post" action="{{ url_for('add_to_cart', item_id=item.id) }}"><button class="btn btn-small" type="submit">Add to Cart +</button></form></div></div>
+    </article>
+    {% else %}<p>No dishes in this category yet.</p>{% endfor %}
+  </div>
+</section>
+{% endblock %}

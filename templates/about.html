@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}About Us | TastyBite{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><p class="eyebrow">OUR STORY</p><h1>Food Made With <em>Heart</em></h1><p>Fresh flavours, warm hospitality and good company.</p></div></section>
+<section class="container section about-grid about-page"><img class="about-photo" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1100&q=85" alt="TastyBite dining space"><div><p class="eyebrow">WELCOME TO TASTYBITE</p><h2>More than a meal.<br><em>A moment to enjoy.</em></h2><p>We started with a simple idea: good food should bring people together. Our menu brings together familiar comfort food and fresh flavours, prepared with attention to quality and served with care.</p><p>Whether you're meeting friends, sharing a family meal or ordering a favourite at home, TastyBite is here to make it memorable.</p><a class="btn" href="{{ url_for('menu') }}">Discover Our Menu</a></div></section>
+<section class="benefits container"><article><span class="benefit-icon">✦</span><h3>Quality First</h3><p>Ingredients chosen with care.</p></article><article><span class="benefit-icon">♡</span><h3>Made With Care</h3><p>Every dish gets our attention.</p></article><article><span class="benefit-icon">☻</span><h3>People First</h3><p>Hospitality is part of the recipe.</p></article><article><span class="benefit-icon">✓</span><h3>Consistency</h3><p>Your favourites, every visit.</p></article></section>
+{% endblock %}

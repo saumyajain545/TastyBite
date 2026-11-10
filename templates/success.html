@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed | TastyBite{% endblock %}
+{% block content %}
+<section class="container section"><div class="success-card"><div class="success-icon">✓</div><p class="eyebrow">ORDER RECEIVED</p><h1>Thank you, {{ customer_name }}!</h1><p>Your order has been saved successfully.</p><div class="order-number">Order number <strong>#TB{{ order_id }}</strong></div><p class="success-total">Order total: <strong>₹{{ '%.2f'|format(total) }}</strong></p><p class="small-note">This demo does not process online payments or send delivery updates.</p><a class="btn" href="{{ url_for('menu') }}">Order More Food</a></div></section>
+{% endblock %}

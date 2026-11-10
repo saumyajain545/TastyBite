@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Checkout | TastyBite{% endblock %}
+{% block content %}
+<section class="page-banner"><div class="container"><p class="eyebrow">SECURE CHECKOUT</p><h1>Complete Your <em>Order</em></h1></div></section>
+<section class="container section"><div class="checkout-layout">
+<form class="form-card" method="post" action="{{ url_for('checkout') }}">
+  <h2>Delivery Details</h2>
+  <label for="name">Full name *</label><input id="name" name="name" required maxlength="120" value="{{ request.form.get('name','') }}">
+  <label for="email">Email address *</label><input id="email" name="email" type="email" required maxlength="190" value="{{ request.form.get('email','') }}">
+  <label for="phone">Phone number *</label><input id="phone" name="phone" type="tel" required maxlength="30" value="{{ request.form.get('phone','') }}">
+  <label for="address">Delivery address *</label><textarea id="address" name="address" rows="3" required>{{ request.form.get('address','') }}</textarea>
+  <label for="notes">Order notes (optional)</label><textarea id="notes" name="notes" rows="2">{{ request.form.get('notes','') }}</textarea>
+  <button class="btn full-width" type="submit">Place Order · ₹{{ '%.2f'|format(total) }}</button>
+  <p class="small-note">Demo project: payment is not collected online.</p>
+</form>
+<aside class="order-summary"><h2>Your Items</h2>{% for item in items %}<div class="summary-line"><span>{{ item.name }} × {{ item.quantity }}</span><strong>₹{{ '%.2f'|format(item.subtotal) }}</strong></div>{% endfor %}<hr><div class="summary-line total-line"><span>Total</span><strong>₹{{ '%.2f'|format(total) }}</strong></div></aside>
+</div></section>
+{% endblock %}

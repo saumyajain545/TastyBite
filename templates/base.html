@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TastyBite restaurant — delicious food made fresh every day.">
+  <title>{% block title %}TastyBite | Good Food, Good Mood{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">♨</span><span>Tasty<span class="accent">Bite</span><small>Good Food, Good Mood</small></span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('menu') }}">Menu</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('home') }}#gallery">Gallery</a>
+      <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+    <div class="nav-actions"><a class="cart-link" href="{{ url_for('cart') }}">🛒 <span>Cart ({{ cart_count }})</span></a><a class="btn btn-small" href="{{ url_for('menu') }}">Order Now</a></div>
+  </div>
+</header>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container flash-area">
+      {% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div><a class="brand brand-light" href="{{ url_for('home') }}"><span class="brand-mark">♨</span><span>Tasty<span class="accent">Bite</span><small>Good Food, Good Mood</small></span></a><p>Fresh ingredients, great taste and memorable moments — served every day.</p></div>
+    <div><h3>Quick Links</h3><a href="{{ url_for('menu') }}">Our Menu</a><a href="{{ url_for('about') }}">About Us</a><a href="{{ url_for('contact') }}">Contact</a></div>
+    <div><h3>Visit Us</h3><p>123 Food Street, Meerut, Uttar Pradesh</p><p>+91 98765 43210</p><p>hello@tastybite.example</p></div>
+    <div><h3>Opening Hours</h3><p>Mon–Sun</p><p>11:00 AM – 10:30 PM</p><a href="{{ url_for('contact') }}">Send us a message →</a></div>
+  </div>
+  <div class="container copyright">© 2026 TastyBite. All rights reserved. <span>Made with care and good food.</span></div>
+</footer>
+</body>
+</html>
